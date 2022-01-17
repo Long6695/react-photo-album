@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://tony-json-server.herokuapp.com/api/users';
+export const BASE_URL = 'https://tony-json-server.herokuapp.com/api/photos';

@@ -26,20 +26,23 @@ const Nav = () => {
     },
   ]
 
-
+  
+  
   const [toggleActive, setToggleActive] = useState(NAV_LINK)
-
+  
 
   const handleChangeActive = (isActive) => () => {
-    setToggleActive(
-      toggleActive.map(item => 
-        item.isActive === isActive 
-        ? 
-        {...item, isActive: true} 
-        : 
-        {...item, isActive: false}))
-  }
 
+      setToggleActive(
+        toggleActive.map(item => 
+          item.isActive === isActive 
+          ? 
+          {...item, isActive: true} 
+          : 
+          {...item, isActive: false}))
+    
+  }
+  
   return (
     <Wrap>
       <ul>

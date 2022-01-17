@@ -9,6 +9,7 @@ import { useAlbumContext } from '../../context/albumContext';
 import { GET_ALBUM } from '../../constants/reducerType';
 //components
 import Loading from '../../components/Loading/Loading';
+
 const DetailPhotoPage = () => {
   const {state, fetchSingleAlbum, dispatch} = useAlbumContext()
 
@@ -20,10 +21,11 @@ const DetailPhotoPage = () => {
     return () => {
       dispatch({type:GET_ALBUM, payload: {}})
     }
-  },[])
+    // eslint-disable-next-line
+  },[photoId])
 
-  const {email, firstName, lastName} = state.album
-
+  const {title, category, description} = state.album
+console.log(state.album)
   if(Object.keys(state.album).length === 0){
     return (<Loading/>)
   }
@@ -34,9 +36,9 @@ const DetailPhotoPage = () => {
           <img src="http://placeimg.com/640/480/cats" alt="" />
       </Image>
       <Content>
-        <Name>Name: {lastName ? lastName : 'Unknown'} {firstName ? firstName : null}</Name>
-        <Email>Email: {email ? email : 'Unknown'}</Email>
-        <p>Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum accusantium modi commodi quam odit facere delectus officiis explicabo officia quibusdam?</p>
+        <Title>Title: {title}</Title>
+        <Category>Category: {category}</Category>
+        <p>Description: {description}</p>
       </Content>
       <Footer>
 
@@ -48,7 +50,7 @@ const DetailPhotoPage = () => {
 export default DetailPhotoPage
 
 const Wrap = styled.div`
-  margin: 0 auto;
+  margin: 100px auto 0;
   background: #fff;
   border-radius: 20px;
   max-width: 800px;
@@ -56,31 +58,32 @@ const Wrap = styled.div`
 
   display:flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   color: #6913E1;
 
-  padding: 20px;
+  padding: 20px 100px;
 
   box-shadow: 0 5px 5px rgba(0 ,0 ,0 ,0.6);
 
 
   @media (max-width: 800px) {
    flex-direction: column;
+   justify-content: center;
+   padding: 20px;
   }
 
 `
 const Image = styled.div`
-  width: 300px;
+  width: 150px;
   height: 150px;
-  margin: 0 50px;
   border-radius: 100%;
   overflow:hidden;
   box-shadow: 0px 0px 5px rgba(0 ,0 ,0 ,0.6);
   
   @media (max-width: 800px) {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
   }
 
 
@@ -96,10 +99,10 @@ const Content = styled.div`
   padding: 20px;
 `
 
-const Name = styled.h3`
+const Title = styled.h3`
   font-size: 30px;
 `
-const Email = styled.h4`
+const Category = styled.h4`
   margin: 20px 0;
   font-size: 25px;
 `

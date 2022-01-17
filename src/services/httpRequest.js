@@ -6,8 +6,17 @@ class HttpRequest  {
     return axios(url, options)
   }
 
+  async post(url, data, options={}) {
+    return axios(url,data,{
+      ...options,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+  }
+
 }
 
-const httpRequest = new HttpRequest
+const httpRequest = new HttpRequest()
 
 export default httpRequest

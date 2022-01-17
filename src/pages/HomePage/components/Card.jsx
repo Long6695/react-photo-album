@@ -8,23 +8,18 @@ import { Link } from 'react-router-dom'
 //helper
 import { convertDate } from '../../../helper/convertDate'
 
-
-
-
 const Card = ({album}) => {
- 
-
 
   return (
     <Wrap>
-      <img src="http://placeimg.com/640/480/cats" alt="" />
+      <img src={album.image} alt="" />
       <Content>
-        <Name>{album.firstName ? album.firstName : 'Anonymous'}</Name>
+        <Name>{album.title}</Name>
         <Time>{convertDate(album.createdAt)}</Time>
       </Content>
       <Options>
-        <Button type="button"><Link to={`/detail/${album.id}`}>View</Link></Button>
-        <Button type="button"><Link to={`/edit/${album.id}`}>Edit</Link></Button>
+        <Link to={`/detail/${album.id}`}><Button type="button">View</Button></Link>
+        <Link to={`/edit/${album.id}`}><Button type="button">Edit</Button></Link>
       </Options>
       
     </Wrap>
@@ -95,50 +90,17 @@ const Options = styled.div`
 
   button {
     padding: 10px 20px;
-    font-size: 16px;
-    background-color: #6812E1;
 
     margin: 5px;
 
-    outline: none;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-
-    box-shadow: 0 5px 5px rgba(0 ,0 ,0 ,0.6);
-    transition: all 0.3s ease-in;
-
-    &:hover {
-      transform: translateY(2px);
-    }
-
-    &:active {
-      animation : button 0.3s ease-in;
-    }
+    text-decoration: none;
 
     @media (max-width: 500px) {
     padding: 5px 10px;
     font-size: 15px;
-  }
-
+    }
   }
   
-    a { 
-      text-decoration: none;
-      color: #fff;
-      letter-spacing: 1.2px;
-
-    }
-  }
-
-  @keyframes button {
-    from {
-      transform: translateY(-2px)
-    }
-    to {
-      transform: translateY(0px)
-    }
-  }
 `
 
 const Content = styled.div`
