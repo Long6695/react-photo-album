@@ -1,22 +1,23 @@
 import React from 'react'
-
+//styled
 import styled from 'styled-components'
+//components
 import Card from './components/Card';
-
+import Loading from '../../components/Loading/Loading';
 // context
 import {useAlbumContext} from '../../context/albumContext'
 
 const HomePage = () => {
 
-  const {albums} = useAlbumContext()
-  console.log(albums)
+  const {state} = useAlbumContext()
+  
+  const {albums} = state
 
   if(albums.length === 0) {
     return (
-      <h1>Loading...</h1>
+      <Loading/>
     )
   }
-
 
   return (
     <Wrap>
@@ -26,6 +27,8 @@ const HomePage = () => {
 }
 
 export default HomePage
+
+
 
 const Wrap = styled.div`
 

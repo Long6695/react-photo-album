@@ -9,7 +9,7 @@ import { BASE_URL } from "../constants/apiUrl";
 //reducer
 import albumReducer from "../reducer/reducer";
 import { initialState } from "../reducer/reducer";
-import { GET_ALBUMS } from "../constants/reducerType";
+import { GET_ALBUMS, GET_ALBUM } from "../constants/reducerType";
 
 // context
 const AlbumContext = createContext()
@@ -28,6 +28,16 @@ const AlbumProvider = ({children}) => {
 
   }
 
+  const fetchSingleAlbum = async (id) => {
+    const res = await httpRequest.get(BASE_URL + `/${id}`)
+
+    const data= res.data.data
+
+    dispatch({type: GET_ALBUM, payload: data})
+  }
+
+
+
   useEffect(() => {
     try {
       fetchAlbums()
@@ -36,9 +46,11 @@ const AlbumProvider = ({children}) => {
     }
   },[])
 
+
+
   
   return (
-    <AlbumContext.Provider value={state}>
+    <AlbumContext.Provider value={{state, fetchSingleAlbum, dispatch}}>
           {children}
     </AlbumContext.Provider>
   )

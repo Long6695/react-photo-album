@@ -1,24 +1,30 @@
 import React from 'react'
-
+//styled
 import styled from 'styled-components'
-
+//components
 import Button from '../../../components/Button/Button'
-
+//router
+import { Link } from 'react-router-dom'
+//helper
 import { convertDate } from '../../../helper/convertDate'
 
-const Card = ({album}) => {
 
-  console.log(album)
+
+
+const Card = ({album}) => {
+ 
+
+
   return (
     <Wrap>
       <img src="http://placeimg.com/640/480/cats" alt="" />
       <Content>
-        <Name>{album.firstName}</Name>
+        <Name>{album.firstName ? album.firstName : 'Anonymous'}</Name>
         <Time>{convertDate(album.createdAt)}</Time>
       </Content>
       <Options>
-        <Button type="button">View</Button>
-        <Button type="button">Edit</Button>
+        <Button type="button"><Link to={`/detail/${album.id}`}>View</Link></Button>
+        <Button type="button"><Link to={`/edit/${album.id}`}>Edit</Link></Button>
       </Options>
       
     </Wrap>
@@ -39,14 +45,6 @@ const Wrap = styled.div`
   justify-content: center;
   position: relative;
 
-  &:hover{
-    opacity: 0.9;
-  }
-
-  &:hover > div  {
-    opacity: 1;
-    visibility: visible;
-  }
 
   img {
     width: 100%;
@@ -54,11 +52,31 @@ const Wrap = styled.div`
     object-fit: cover;
   }
 
-  div {
+
+
+  @media (max-width: 850px) {
+    div {
+      opacity: 1;
+      visibility: visible
+    }
+  }
+
+  @media (min-width: 851px) {
+    
+    div {
     opacity: 0;
     visibility: hidden;
   }
 
+    &:hover{
+      opacity: 0.9;
+    }
+
+    &:hover > div  {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 
 
 `
@@ -79,8 +97,6 @@ const Options = styled.div`
     padding: 10px 20px;
     font-size: 16px;
     background-color: #6812E1;
-    color: #fff;
-    letter-spacing: 1.2px;
 
     margin: 5px;
 
@@ -100,6 +116,19 @@ const Options = styled.div`
       animation : button 0.3s ease-in;
     }
 
+    @media (max-width: 850px) {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+
+  }
+  
+    a { 
+      text-decoration: none;
+      color: #fff;
+      letter-spacing: 1.2px;
+
+    }
   }
 
   @keyframes button {
@@ -120,12 +149,22 @@ const Content = styled.div`
   align-items: center;
   
   color: #fff;
+
+  
 `
 const Name = styled.h3`
-  font-size: 25px;
+  
   text-shadow: 2px 2px 4px #000000;
+
+  @media (max-width: 850px) {
+    font-size: 15px;
+  }
 `
 const Time = styled.span`
   font-size: 20px;
   text-shadow: 2px 2px 4px #000000;
+
+  @media (max-width: 850px) {
+    font-size: 15px;
+  }
 `
