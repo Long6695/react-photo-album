@@ -116,9 +116,9 @@ const Options = styled.div`
       animation : button 0.3s ease-in;
     }
 
-    @media (max-width: 850px) {
+    @media (max-width: 500px) {
     padding: 5px 10px;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   }
@@ -164,7 +164,7 @@ const Time = styled.span`
   font-size: 20px;
   text-shadow: 2px 2px 4px #000000;
 
-  @media (max-width: 850px) {
+  @media (max-width: 500px) {
     font-size: 15px;
   }
 `
