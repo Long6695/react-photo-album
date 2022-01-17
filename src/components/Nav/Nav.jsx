@@ -13,11 +13,13 @@ const Nav = () => {
   
   const NAV_LINK = [
     {
+      id: 1,
       name: 'Home',
       link: '/',
       isActive: location.pathname === '/',
     },
     {
+      id: 2,
       name: 'Post Your Image',
       link: '/add',
       isActive: location.pathname === '/add',
@@ -43,7 +45,7 @@ const Nav = () => {
       <ul>
 
         {toggleActive.map(item => (
-          <li>
+          <li key= {item.id}>
             <CustomLink 
               style={item.isActive ? {borderBottom: "3px solid #fff"} : null} 
               to={item.link} 

@@ -7,9 +7,12 @@ import AlbumProvider from './context/albumContext';
 
 
 ReactDOM.render(
-  <AlbumProvider>
-    <App />
-  </AlbumProvider>,
+  <React.StrictMode>
+    <AlbumProvider>
+      <App />
+    </AlbumProvider>
+  </React.StrictMode>
+  ,
   document.getElementById('root')
 );
 

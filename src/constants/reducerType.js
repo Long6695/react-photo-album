@@ -1,2 +1,1 @@
-
 export const GET_ALBUMS = 'ALBUMS/GET_ALBUMS'

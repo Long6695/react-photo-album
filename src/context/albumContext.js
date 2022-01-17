@@ -44,6 +44,8 @@ const AlbumProvider = ({children}) => {
   )
 }
 
-export const useAlbumContext = () => useContext(AlbumContext)
+const useAlbumContext = () => useContext(AlbumContext)
+
+export { useAlbumContext }
 
 export default AlbumProvider
