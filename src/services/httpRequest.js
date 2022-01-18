@@ -3,11 +3,11 @@ import axios from 'axios'
 class HttpRequest  {
 
   async get(url, options= {}) {
-    return axios(url, options)
+    return axios.get(url, options)
   }
 
   async post(url, data, options={}) {
-    return axios(url,data,{
+    return axios.post(url,data,{
       ...options,
       headers: {
         'Content-Type': 'application/json'

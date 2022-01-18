@@ -20,7 +20,7 @@ const AlbumProvider = ({children}) => {
 
 
   const fetchAlbums = async () =>{
-    const res = await httpRequest.get(BASE_URL + `?_page=1&_limit=10`)
+    const res = await httpRequest.get(BASE_URL + `?_page=1&_limit=9`)
 
     const data= res.data.data
 
@@ -37,7 +37,7 @@ const AlbumProvider = ({children}) => {
   }
 
 
-  const addAlbums = async (data) => {
+  const handleAddAlbum = async (data) => {
 
     if(Object.keys(data).length === 0) return
     await httpRequest.post(BASE_URL, data)
@@ -59,7 +59,7 @@ const AlbumProvider = ({children}) => {
 
   
   return (
-    <AlbumContext.Provider value={{state, fetchSingleAlbum, dispatch, addAlbums}}>
+    <AlbumContext.Provider value={{state, fetchSingleAlbum, dispatch, handleAddAlbum}}>
           {children}
     </AlbumContext.Provider>
   )

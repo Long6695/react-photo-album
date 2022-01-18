@@ -25,7 +25,7 @@ const DetailPhotoPage = () => {
   },[photoId])
 
   const {title, category, description} = state.album
-console.log(state.album)
+
   if(Object.keys(state.album).length === 0){
     return (<Loading/>)
   }

@@ -2,11 +2,12 @@ import React from 'react'
 
 import styled from 'styled-components'
 
-const Input = ({type, value, onChange, children}) => {
+const Input = ({children, error, ...props}) => {
   return (
     <InputField>
     <label>{children}</label>
-    <input type={type} value={value} onChange={onChange}/>
+    <input {...props}/>
+    <span>{error}</span>
     </InputField>
   )
 }
@@ -45,4 +46,8 @@ const InputField =styled.div`
 
   }
   
+  span{
+    color: orange;
+    font-size:18px;
+  }
   `
