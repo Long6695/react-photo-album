@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 
 //router
 import { Link, useLocation } from 'react-router-dom'
+import { useEffect } from 'react/cjs/react.development';
 
 // styled
 import styled from 'styled-components'
@@ -16,33 +17,27 @@ const Nav = () => {
       id: 1,
       name: 'Home',
       link: '/',
-      isActive: location.pathname === '/',
+      isActive: true,
     },
     {
       id: 2,
       name: 'Post Your Image',
       link: '/add',
-      isActive: location.pathname === '/add',
+      isActive: false,
     },
   ]
 
-  
+  console.log(location.pathname)
   
   const [toggleActive, setToggleActive] = useState(NAV_LINK)
   
 
-  const handleChangeActive = (isActive) => () => {
+  useEffect(() => {
+    setToggleActive(toggleActive.map(item => {
+      return item.link === location.pathname ? {...item, isActive: true} : {...item, isActive: false}
+    }))
+  },[location.pathname])
 
-      setToggleActive(
-        toggleActive.map(item => 
-          item.isActive === isActive 
-          ? 
-          {...item, isActive: true} 
-          : 
-          {...item, isActive: false}))
-    
-  }
-  
   return (
     <Wrap>
       <ul>
@@ -51,8 +46,8 @@ const Nav = () => {
           <li key= {item.id}>
             <CustomLink 
               style={item.isActive ? {borderBottom: "3px solid #fff"} : null} 
-              to={item.link} 
-              onClick={handleChangeActive(item.isActive)}>{item.name}
+              to={item.link}>
+              {item.name}
             </CustomLink>
           </li>
         ))}
