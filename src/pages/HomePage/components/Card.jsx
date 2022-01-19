@@ -115,18 +115,18 @@ const Content = styled.div`
   
 `
 const Name = styled.h3`
-  
   text-shadow: 2px 2px 4px #000000;
+  font-size: 35px;
 
   @media (max-width: 850px) {
-    font-size: 15px;
+    font-size: 26px;
   }
 `
 const Time = styled.span`
-  font-size: 20px;
+  font-size: 22px;
   text-shadow: 2px 2px 4px #000000;
 
   @media (max-width: 500px) {
-    font-size: 15px;
+    font-size: 18px;
   }
 `

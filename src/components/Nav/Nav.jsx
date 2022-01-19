@@ -63,6 +63,10 @@ const Wrap = styled.nav`
   display: flex;
   justify-content: flex-end;
   align-item: center;
+  position: fixed;
+  top: 10px;
+  right: 100px;
+  z-index: 100;
 
   ul {
     display: flex;
@@ -71,7 +75,6 @@ const Wrap = styled.nav`
     
     li {
       margin-left: 40px;
-
     }
   }
 `
@@ -79,7 +82,8 @@ const Wrap = styled.nav`
 const CustomLink = styled(Link)`
   text-decoration: none;
   color: #fff;
-  font-size: 22px;
+  font-size: 25px;
+  text-shadow: -2px 2px 7px #CE5937;
 
   &:hover {
     border-bottom: 2px solid rgba(249, 249, 249, 0.6)

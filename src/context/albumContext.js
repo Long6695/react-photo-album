@@ -25,7 +25,6 @@ const AlbumProvider = ({children}) => {
     const data= res.data.data
 
     dispatch({type: GET_ALBUMS, payload: data})
-
   }
 
   const fetchSingleAlbum = async (id) => {
@@ -36,10 +35,9 @@ const AlbumProvider = ({children}) => {
     dispatch({type: GET_ALBUM, payload: data})
   }
 
-
   const handleAddAlbum = async (data) => {
-
     if(Object.keys(data).length === 0) return
+
     await httpRequest.post(BASE_URL, data)
 
     dispatch({type:ADD_ALBUM, payload: data})
@@ -50,16 +48,6 @@ const AlbumProvider = ({children}) => {
 
     dispatch({type:EDIT_ALBUM, payload: data})
   }
-
-  useEffect(() => {
-    try {
-      fetchAlbums()
-    } catch (error) {
-      throw new Error(error)
-    }
-  },[])
-
-
 
   
   return (

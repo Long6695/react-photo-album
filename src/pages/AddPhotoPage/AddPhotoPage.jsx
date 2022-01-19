@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 
 const AddPhotoPage = () => {
   const history = useHistory()
-  const [valueForm, setValueForm] = useState({
+  const [formValue, setFormValue] = useState({
     id: Date.now(),
     createdAt: Date.now(),
     image: '',
@@ -40,17 +40,17 @@ const AddPhotoPage = () => {
       }
     })
 
-    const errors = Object.keys(valueForm).filter(
-      (element) => !valueForm[element]
+    const errors = Object.keys(formValue).filter(
+      (element) => !formValue[element]
     )
 
     if(errors.length !== 0) return
     
-    handleAddAlbum(valueForm)
 
-    history.goBack(-1)
+    handleAddAlbum(formValue)
+
+    // history.goBack(-1)
   }
-
   const onChange = (event) => {
     const {value, name} = event.target
 
@@ -61,7 +61,7 @@ const AddPhotoPage = () => {
     }
 
   
-    setValueForm(prev => {
+    setFormValue(prev => {
       return {
         ...prev,
         [name] : value
@@ -88,7 +88,7 @@ const AddPhotoPage = () => {
       onChange={onChange} 
       onBlur={onBlur} 
       name="title" 
-      value={valueForm.title} 
+      value={formValue.title} 
       error={error.title && "Please Enter Title"}>
       Title
       </Input>
@@ -97,7 +97,7 @@ const AddPhotoPage = () => {
       type="text" 
       onChange={onChange} 
       onBlur={onBlur} name="category" 
-      value={valueForm.category} 
+      value={formValue.category} 
       error={error.category && "Please Enter Category"}>
       Category
       </Input>
@@ -106,7 +106,7 @@ const AddPhotoPage = () => {
       type="text" 
       onChange={onChange} 
       onBlur={onBlur} name="image" 
-      value={valueForm.image} 
+      value={formValue.image} 
       error={error.image && "Please Enter Image"}>
       Image
       </Input>
@@ -116,7 +116,7 @@ const AddPhotoPage = () => {
       onChange={onChange} 
       onBlur={onBlur} 
       name="description" 
-      value={valueForm.description} 
+      value={formValue.description} 
       error={error.description && "Please Enter Description"}>
       Description
       </Input>
