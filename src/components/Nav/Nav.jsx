@@ -26,8 +26,6 @@ const Nav = () => {
       isActive: false,
     },
   ]
-
-  console.log(location.pathname)
   
   const [toggleActive, setToggleActive] = useState(NAV_LINK)
   
