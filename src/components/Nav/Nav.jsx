@@ -1,8 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 //router
 import { Link, useLocation } from 'react-router-dom'
-import { useEffect } from 'react/cjs/react.development';
 
 // styled
 import styled from 'styled-components'
@@ -34,6 +33,7 @@ const Nav = () => {
     setToggleActive(toggleActive.map(item => {
       return item.link === location.pathname ? {...item, isActive: true} : {...item, isActive: false}
     }))
+    // eslint-disable-next-line
   },[location.pathname])
 
   return (
