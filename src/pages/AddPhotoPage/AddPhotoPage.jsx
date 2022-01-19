@@ -1,10 +1,8 @@
 import React, {useState} from 'react'
 
-import styled from 'styled-components'
-
 import Input from '../../components/Input/Input'
 import Button from '../../components/Button/Button'
-
+import Form from '../../components/Form/Form'
 import {useAlbumContext} from '../../context/albumContext'
 import { useHistory } from 'react-router-dom';
 
@@ -130,9 +128,3 @@ const AddPhotoPage = () => {
 
 export default AddPhotoPage
 
-const Form = styled.form`
-  display : flex;
-  flex-direction: column;
-  align-items:center;
-
-`

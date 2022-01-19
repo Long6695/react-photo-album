@@ -15,6 +15,15 @@ class HttpRequest  {
     })
   }
 
+  async patch(url, data, options= {}) {
+    return axios.patch(url, data, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+  }
+
 }
 
 const httpRequest = new HttpRequest()

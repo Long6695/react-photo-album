@@ -11,21 +11,14 @@ const HomePage = () => {
 
   const {state} = useAlbumContext()
   
-  const {albums, addAlbum} = state
+  const {albums} = state
 
   if(albums.length === 0) {
     return (
       <Loading/>
     )
   }
-  
-  if(Object.keys(addAlbum).length !== 0) {
-    return (
-      <Wrap>
-      {[addAlbum, ...albums].map(album => <Card key={album.id} album= {album}/>)}
-    </Wrap>
-    )
-  }
+
   return (
     <Wrap>
       {albums.map(album => <Card key={album.id} album= {album}/>)}

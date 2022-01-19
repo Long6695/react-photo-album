@@ -9,7 +9,7 @@ import { BASE_URL } from "../constants/apiUrl";
 //reducer
 import albumReducer from "../reducer/reducer";
 import { initialState } from "../reducer/reducer";
-import { GET_ALBUMS, GET_ALBUM, ADD_ALBUM } from "../constants/reducerType";
+import { GET_ALBUMS, GET_ALBUM, ADD_ALBUM, EDIT_ALBUM } from "../constants/reducerType";
 
 // context
 const AlbumContext = createContext()
@@ -32,7 +32,7 @@ const AlbumProvider = ({children}) => {
     const res = await httpRequest.get(BASE_URL + `/${id}`)
 
     const data= res.data.data
-
+    
     dispatch({type: GET_ALBUM, payload: data})
   }
 
@@ -45,7 +45,11 @@ const AlbumProvider = ({children}) => {
     dispatch({type:ADD_ALBUM, payload: data})
   }
 
+  const handleEditAlbum = async(id, data) => {
+    await httpRequest.patch(BASE_URL + `/${id}`, data)
 
+    dispatch({type:EDIT_ALBUM, payload: data})
+  }
 
   useEffect(() => {
     try {
@@ -59,7 +63,7 @@ const AlbumProvider = ({children}) => {
 
   
   return (
-    <AlbumContext.Provider value={{state, fetchSingleAlbum, dispatch, handleAddAlbum}}>
+    <AlbumContext.Provider value={{state, fetchSingleAlbum, dispatch, handleAddAlbum, handleEditAlbum, fetchAlbums}}>
           {children}
     </AlbumContext.Provider>
   )

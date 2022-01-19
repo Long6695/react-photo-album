@@ -1,9 +1,10 @@
-import { GET_ALBUMS, GET_ALBUM, ADD_ALBUM } from "../constants/reducerType";
+import { GET_ALBUMS, GET_ALBUM, ADD_ALBUM, EDIT_ALBUM } from "../constants/reducerType";
 
 export const initialState = {
   albums: [],
   album: {},
   addAlbum: {},
+  editAlbum: {},
 }
 
 const albumReducer = (state = initialState, action) => {
@@ -14,6 +15,8 @@ const albumReducer = (state = initialState, action) => {
       return {...state, album: action.payload};
     case ADD_ALBUM: 
       return {...state, addAlbum: action.payload}
+    case EDIT_ALBUM: 
+      return {...state, editAlbum: action.payload}
     default:
       return state
   }
