@@ -14,8 +14,7 @@ import EditPhotoPage from './pages/EditPhotoPage/EditPhotoPage';
 function App() {
   
   return (
-    <div className="App">
-        <Router>
+      <Router>
           <Nav />
           <Switch>
             <Route path="/detail/:photoId" render={() => <DetailPhotoPage/>}/>
@@ -23,8 +22,7 @@ function App() {
             <Route path="/add" render={() => <AddPhotoPage/>}/>
             <Route path="/" render={() => <HomePage/>}/>
           </Switch>
-        </Router>
-    </div>
+      </Router>
   );
 }
 

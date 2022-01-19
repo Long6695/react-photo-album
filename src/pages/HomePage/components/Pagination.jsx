@@ -29,7 +29,9 @@ const StyledPagination = styled.div`
     text-decoration: none;
     font-size: 20px;
     text-shadow: -2px 2px 7px #CE5937;
-
+    @media ( max-width: 500px ) {
+      padding: 8px 14px;
+  }
     &:hover {
       background: #fff;
       border-radius: 8px;

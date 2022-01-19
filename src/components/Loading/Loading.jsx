@@ -16,4 +16,5 @@ const Text = styled.div`
   text-align:center;
   font-size: 40px;
   letter-spacing: 2px;
+  margin-top: 300px;
 `

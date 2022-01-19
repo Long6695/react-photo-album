@@ -29,25 +29,30 @@ const HomePage = () => {
 
 
   return (
-    <>
+    <Container>
       <Wrap>
         {albums.length > 0 && albums.map(album => <Card key={album.id} album= {album}/>)}
       </Wrap>
         <Pagination />
-    </>
+    </Container>
   )
 }
 
 export default HomePage
 
 
-
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  margin-top: 40px;
+`
 const Wrap = styled.div`
 
   max-width: 1200px;
   width: 100%;
 
-
+  flex:1;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 20px;

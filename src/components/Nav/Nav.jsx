@@ -68,6 +68,12 @@ const Wrap = styled.nav`
   right: 100px;
   z-index: 100;
 
+  @media ( max-width: 500px ) {
+    justify-content: center;
+    top: 20px; 
+    right: 0;
+  }
+
   ul {
     display: flex;
     align-item: center;
@@ -75,6 +81,10 @@ const Wrap = styled.nav`
     
     li {
       margin-left: 40px;
+
+    @media ( max-width: 500px ) {
+      margin: 0 20px;
+  }
     }
   }
 `
