@@ -44,8 +44,8 @@ export default HomePage
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 90vh;
-  margin-top: 40px;
+  align-items: center;
+  margin-top: 20px;
 `
 const Wrap = styled.div`
 

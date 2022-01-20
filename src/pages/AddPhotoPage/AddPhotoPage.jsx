@@ -5,7 +5,7 @@ import Button from '../../components/Button/Button'
 import Form from '../../components/Form/Form'
 import {useAlbumContext} from '../../context/albumContext'
 import { useHistory } from 'react-router-dom';
-
+import Loading from '../../components/Loading/Loading'
 const AddPhotoPage = () => {
   const history = useHistory()
   const [formValue, setFormValue] = useState({
@@ -19,7 +19,7 @@ const AddPhotoPage = () => {
 
   const [error, setError] = useState({}) 
 
-  const {handleAddAlbum} = useAlbumContext()
+  const {handleAddAlbum, state} = useAlbumContext()
 
   const handleSubmit = (event) => {
 
@@ -48,8 +48,11 @@ const AddPhotoPage = () => {
     
 
     handleAddAlbum(formValue)
+    
+   setTimeout(() =>{
+     history.goBack(-1)
+   }, 500)
 
-    // history.goBack(-1)
   }
   const onChange = (event) => {
     const {value, name} = event.target
@@ -81,47 +84,49 @@ const AddPhotoPage = () => {
       }
     })
   }
+
+
   return (
     <Form onSubmit={handleSubmit}>
-      <Input 
-      type="text" 
-      onChange={onChange} 
-      onBlur={onBlur} 
-      name="title" 
-      value={formValue.title} 
-      error={error.title && "Please Enter Title"}>
-      Title
-      </Input>
+        <Input 
+        type="text" 
+        onChange={onChange} 
+        onBlur={onBlur} 
+        name="title" 
+        value={formValue.title} 
+        error={error.title && "Please Enter Title"}>
+        Title
+        </Input>
 
-      <Input 
-      type="text" 
-      onChange={onChange} 
-      onBlur={onBlur} name="category" 
-      value={formValue.category} 
-      error={error.category && "Please Enter Category"}>
-      Category
-      </Input>
+        <Input 
+        type="text" 
+        onChange={onChange} 
+        onBlur={onBlur} name="category" 
+        value={formValue.category} 
+        error={error.category && "Please Enter Category"}>
+        Category
+        </Input>
 
-      <Input 
-      type="text" 
-      onChange={onChange} 
-      onBlur={onBlur} name="image" 
-      value={formValue.image} 
-      error={error.image && "Please Enter Image"}>
-      Image
-      </Input>
+        <Input 
+        type="text" 
+        onChange={onChange} 
+        onBlur={onBlur} name="image" 
+        value={formValue.image} 
+        error={error.image && "Please Enter Image"}>
+        Image
+        </Input>
 
-      <Input 
-      type="text" 
-      onChange={onChange} 
-      onBlur={onBlur} 
-      name="description" 
-      value={formValue.description} 
-      error={error.description && "Please Enter Description"}>
-      Description
-      </Input>
+        <Input 
+        type="text" 
+        onChange={onChange} 
+        onBlur={onBlur} 
+        name="description" 
+        value={formValue.description} 
+        error={error.description && "Please Enter Description"}>
+        Description
+        </Input>
 
-      <Button type="submit">Post Your Photo</Button>
+        <Button type="submit">Post Your Photo</Button>
     </Form>
   )
 }

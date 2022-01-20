@@ -21,8 +21,8 @@ const StyledPagination = styled.div`
   display: flex;
   align-items: center;
   justify-content:flex-end;
-  max-width: 1200px;
-  margin: 20px auto;
+  max-width: 800px;
+  margin: 20px;
   a {
     color: #fff;
     padding: 8px 16px;

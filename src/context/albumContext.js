@@ -1,5 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
-
+import { createContext, useContext, useReducer } from "react";
 //Services
 import httpRequest from "../services/httpRequest";
 
@@ -18,7 +17,6 @@ const AlbumProvider = ({children}) => {
 
   const [state, dispatch] = useReducer(albumReducer, initialState)
 
-
   const fetchAlbums = async () =>{
     const res = await httpRequest.get(BASE_URL + `?_page=1&_limit=9`)
 
@@ -36,17 +34,18 @@ const AlbumProvider = ({children}) => {
   }
 
   const handleAddAlbum = async (data) => {
-    if(Object.keys(data).length === 0) return
+      if(Object.keys(data).length === 0) return
 
-    await httpRequest.post(BASE_URL, data)
-
-    dispatch({type:ADD_ALBUM, payload: data})
+      await httpRequest.post(BASE_URL, data)
+  
+      dispatch({type:ADD_ALBUM, payload: data})
+  
   }
 
   const handleEditAlbum = async(id, data) => {
     await httpRequest.patch(BASE_URL + `/${id}`, data)
 
-    dispatch({type:EDIT_ALBUM, payload: data})
+    dispatch({type:EDIT_ALBUM, id: id , payload: data})
   }
 
   

@@ -5,6 +5,7 @@ import {useAlbumContext} from '../../context/albumContext'
 import Form from '../../components/Form/Form';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
+import Loading from '../../components/Loading/Loading';
 
 
 
@@ -14,6 +15,7 @@ const EditPhotoPage = () => {
   const {photoId} = useParams()
   const history = useHistory()
   const {album} = state
+
   const [formValue, setFormValue] = useState({
     title:'',
     image: '',
@@ -61,12 +63,15 @@ const EditPhotoPage = () => {
     const errors = Object.keys(formValue).filter(
       (element) => !formValue[element]
     )
-      console.log(errors)
+
     if(errors.length !== 0) return
 
     handleEditAlbum(photoId, formValue)
+    
+    setTimeout(() =>{
+      history.goBack(-1)
+    }, 500)
 
-    history.goBack(-1)
   }
 
 
@@ -99,6 +104,7 @@ const EditPhotoPage = () => {
     }
   })
 }
+
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -146,8 +152,9 @@ const EditPhotoPage = () => {
       Description
       </Input>
 
-    <Button type="submit">Edit Your Photo</Button>
-  </Form>
+      <Button type="submit">Edit Your Photo</Button>
+    </Form>
+    
   )
 }
 
