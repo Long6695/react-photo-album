@@ -60,18 +60,20 @@ export default Nav
 const Wrap = styled.nav`
   width: 100%;
   height: 70px;
-  display: flex;
-  justify-content: flex-end;
-  align-item: center;
   position: fixed;
-  top: 10px;
-  right: 100px;
+  top: 30px;
+  right: 0;
+  left: -100px;
+
+  display:flex;
+  justify-content: flex-end;
   z-index: 100;
 
   @media ( max-width: 500px ) {
-    justify-content: center;
-    top: 20px; 
-    right: 0;
+  top: 20px;
+  left: 0;
+  justify-content: center;
+
   }
 
   ul {
@@ -79,8 +81,10 @@ const Wrap = styled.nav`
     align-item: center;
     list-style: none;
     
-    li {
+    li:not(last-child) {
       margin-left: 40px;
+
+    
 
     @media ( max-width: 500px ) {
       margin: 0 20px;

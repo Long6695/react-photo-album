@@ -9,17 +9,18 @@ import Pagination from './components/Pagination';
 import {useAlbumContext} from '../../context/albumContext'
 
 const HomePage = () => {
-  const {state, fetchAlbums} = useAlbumContext()
+  const {state, fetchAlbums, page} = useAlbumContext()
   
   const {albums} = state
   
   useEffect(() => {
     try {
-      fetchAlbums()
+      fetchAlbums(page)
     } catch (error) {
       throw new Error(error)
     }
-  },[])
+    // eslint-disable-next-line
+  },[page])
 
   if(albums.length === 0) {
     return (
@@ -33,7 +34,7 @@ const HomePage = () => {
       <Wrap>
         {albums.length > 0 && albums.map(album => <Card key={album.id} album= {album}/>)}
       </Wrap>
-        <Pagination />
+      <Pagination />
     </Container>
   )
 }
@@ -44,11 +45,14 @@ export default HomePage
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+
+  width: 100%;
+  height: 90vh; 
+
   align-items: center;
   margin-top: 20px;
 `
 const Wrap = styled.div`
-
   max-width: 1200px;
   width: 100%;
 

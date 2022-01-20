@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 //Services
 import httpRequest from "../services/httpRequest";
 
@@ -17,10 +17,15 @@ const AlbumProvider = ({children}) => {
 
   const [state, dispatch] = useReducer(albumReducer, initialState)
 
-  const fetchAlbums = async () =>{
-    const res = await httpRequest.get(BASE_URL + `?_page=1&_limit=9`)
+  const [page, setPage] = useState(1)
+  const [totalPage, setTotalPage] = useState(1)
+
+  const fetchAlbums = async (_page) =>{
+    const res = await httpRequest.get(BASE_URL + `?_page=${_page}&_limit=2`)
 
     const data= res.data.data
+
+    setTotalPage(Math.ceil(res.data.pagination.totalCount / res.data.pagination.limit))
 
     dispatch({type: GET_ALBUMS, payload: data})
   }
@@ -50,7 +55,7 @@ const AlbumProvider = ({children}) => {
 
   
   return (
-    <AlbumContext.Provider value={{state, fetchSingleAlbum, dispatch, handleAddAlbum, handleEditAlbum, fetchAlbums}}>
+    <AlbumContext.Provider value={{state, fetchSingleAlbum, dispatch, handleAddAlbum, handleEditAlbum, fetchAlbums, page, setPage, totalPage}}>
           {children}
     </AlbumContext.Provider>
   )
