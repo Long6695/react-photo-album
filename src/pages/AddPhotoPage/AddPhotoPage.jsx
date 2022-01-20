@@ -5,7 +5,7 @@ import Button from '../../components/Button/Button'
 import Form from '../../components/Form/Form'
 import {useAlbumContext} from '../../context/albumContext'
 import { useHistory } from 'react-router-dom';
-import Loading from '../../components/Loading/Loading'
+
 const AddPhotoPage = () => {
   const history = useHistory()
   const [formValue, setFormValue] = useState({
@@ -19,7 +19,7 @@ const AddPhotoPage = () => {
 
   const [error, setError] = useState({}) 
 
-  const {handleAddAlbum, state} = useAlbumContext()
+  const {handleAddAlbum} = useAlbumContext()
 
   const handleSubmit = (event) => {
 

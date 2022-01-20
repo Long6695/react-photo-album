@@ -13,15 +13,18 @@ import { GET_ALBUMS, GET_ALBUM, ADD_ALBUM, EDIT_ALBUM } from "../constants/reduc
 // context
 const AlbumContext = createContext()
 
-const AlbumProvider = ({children}) => {
+const LIMIT = 2
 
+
+const AlbumProvider = ({children}) => {
+  
   const [state, dispatch] = useReducer(albumReducer, initialState)
 
-  const [page, setPage] = useState(1)
   const [totalPage, setTotalPage] = useState(1)
 
+
   const fetchAlbums = async (_page) =>{
-    const res = await httpRequest.get(BASE_URL + `?_page=${_page}&_limit=2`)
+    const res = await httpRequest.get(BASE_URL + `?_page=${_page}&_limit=${LIMIT}`)
 
     const data= res.data.data
 
@@ -55,7 +58,7 @@ const AlbumProvider = ({children}) => {
 
   
   return (
-    <AlbumContext.Provider value={{state, fetchSingleAlbum, dispatch, handleAddAlbum, handleEditAlbum, fetchAlbums, page, setPage, totalPage}}>
+    <AlbumContext.Provider value={{state, fetchSingleAlbum, dispatch, handleAddAlbum, handleEditAlbum, fetchAlbums, totalPage, LIMIT}}>
           {children}
     </AlbumContext.Provider>
   )

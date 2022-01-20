@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 //styled
 import styled from 'styled-components'
 //components
@@ -7,20 +7,37 @@ import Loading from '../../components/Loading/Loading';
 import Pagination from './components/Pagination';
 // context
 import {useAlbumContext} from '../../context/albumContext'
+//router
+import { useHistory, useLocation } from 'react-router-dom';
+
+const useQueryString = () => {
+  return new URLSearchParams(useLocation().search)
+}
+
 
 const HomePage = () => {
-  const {state, fetchAlbums, page} = useAlbumContext()
+  
+  const history = useHistory()
+  
+  const {state, fetchAlbums, LIMIT} = useAlbumContext()
   
   const {albums} = state
   
+  const queryString = useQueryString();
+  const queryPage = queryString.get('_page');
+
+  const [page, setPage] = useState(queryPage || 1)
+
   useEffect(() => {
     try {
+      history.replace({ pathname: '/', search: `_page=${page}&_limit=${LIMIT}`})
+
       fetchAlbums(page)
     } catch (error) {
       throw new Error(error)
     }
     // eslint-disable-next-line
-  },[page])
+  },[history, page])
 
   if(albums.length === 0) {
     return (
@@ -28,13 +45,12 @@ const HomePage = () => {
     )
   }
 
-
   return (
     <Container>
       <Wrap>
         {albums.length > 0 && albums.map(album => <Card key={album.id} album= {album}/>)}
       </Wrap>
-      <Pagination />
+      <Pagination page={page} setPage={setPage} />
     </Container>
   )
 }

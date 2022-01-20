@@ -3,9 +3,10 @@ import styled from 'styled-components'
 
 import { useAlbumContext } from '../../../context/albumContext'
 
-const Pagination = () => {
 
-  const {page, setPage, totalPage} = useAlbumContext()
+const Pagination = ({page, setPage}) => {
+
+  const {totalPage} = useAlbumContext()
 
   const handlePrevPage = () => {
     setPage(prev => prev - 1)
@@ -35,13 +36,15 @@ const Pagination = () => {
     textShadow: 'none',
   }
   
+  const lastItem = Array.from(Array(totalPage).keys()).length
+
   return (
     <StyledPagination >
         <li style={page === 1 ? DISABLE_BTN_STYLES : null} onClick={handlePrevPage}>Prev</li>
       {Array.from(Array(totalPage).keys()).map(item => (
-        <li style={page === item + 1 ? PAGE_NUM_STYLES : null} key={item} onClick={handleCallApiWithPage(item + 1)}>{item + 1}</li>
+        <li style={page === item + 1  ? PAGE_NUM_STYLES : null} key={item} onClick={handleCallApiWithPage(item + 1)}>{item + 1}</li>
       ))}
-        <li style={page === Array.from(Array(totalPage).keys()).length ? DISABLE_BTN_STYLES : null} onClick={handleNextPage}>Next</li>
+        <li style={page === lastItem ? DISABLE_BTN_STYLES : null} onClick={handleNextPage}>Next</li>
     </StyledPagination>
   )
 }
