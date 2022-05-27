@@ -84,8 +84,7 @@ const AddPhotoPage = () => {
       }
     })
   }
-
-console.log(test)
+console.log('asd')
   return (
     <Form onSubmit={handleSubmit}>
         <Input 
